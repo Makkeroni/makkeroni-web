@@ -1,0 +1,151 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  lang?: string;
+}
+const { title, description = "Makkeroni - Gastronomia italiana a Barcellona", lang = "es" } = Astro.props;
+
+const nav = {
+  es: { home: "/", historia: "/quien-somos", productos: "/nuestros-productos", recetas: "/recetas", contacto: "/contacto", label: "Español" },
+  it: { home: "/it/", historia: "/it/chi-siamo", productos: "/it/prodotti", recetas: "/it/ricette", contacto: "/it/contatti", label: "Italiano" },
+  en: { home: "/en/", historia: "/en/about", productos: "/en/products", recetas: "/en/recipes", contacto: "/en/contact", label: "English" },
+  ca: { home: "/ca/", historia: "/ca/historia", productos: "/ca/productes", recetas: "/ca/receptes", contacto: "/ca/contacte", label: "Català" },
+};
+
+const labels = {
+  es: { home: "Inicio", historia: "Quién somos", productos: "Nuestros productos", recetas: "Recetas", contacto: "Contacto" },
+  it: { home: "Home", historia: "Chi siamo", productos: "Prodotti", recetas: "Ricette", contacto: "Contatti" },
+  en: { home: "Home", historia: "About us", productos: "Products", recetas: "Recipes", contacto: "Contact" },
+  ca: { home: "Inici", historia: "Qui som", productos: "Productes", recetas: "Receptes", contacto: "Contacte" },
+};
+
+const l = labels[lang];
+const n = nav[lang];
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="icon" type="image/png" href="/images/logo-makkeroni.png" />
+  <style>
+    :root {
+      --verde: #1c5c34;
+      --rosso: #b3261e;
+      --crema: #faf6ef;
+      --testo: #2b2b2b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: var(--crema);
+      color: var(--testo);
+      line-height: 1.6;
+    }
+    header {
+      background: var(--verde);
+      color: white;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    header a { color: white; text-decoration: none; }
+    .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.2rem;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+    nav a:hover { text-decoration: underline; }
+    .lang-switch {
+      display: flex;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+    }
+    .lang-switch a { opacity: 0.85; }
+    .lang-switch a.active { opacity: 1; font-weight: bold; text-decoration: underline; }
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    h1 { color: var(--verde); }
+    h2 { color: var(--rosso); border-bottom: 2px solid var(--rosso); padding-bottom: 0.3rem; }
+    footer {
+      background: var(--verde);
+      color: white;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    footer a { color: white; }
+    .wa-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href={n.home} class="logo">MAKKERONI</a>
+    <nav>
+      <ul>
+        <li><a href={n.home}>{l.home}</a></li>
+        <li><a href={n.historia}>{l.historia}</a></li>
+        <li><a href={n.productos}>{l.productos}</a></li>
+        <li><a href={n.recetas}>{l.recetas}</a></li>
+        <li><a href={n.contacto}>{l.contacto}</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch">
+      <a href="/" class:list={[lang === 'es' && 'active']}>ES</a>
+      <a href="/it/" class:list={[lang === 'it' && 'active']}>IT</a>
+      <a href="/en/" class:list={[lang === 'en' && 'active']}>EN</a>
+      <a href="/ca/" class:list={[lang === 'ca' && 'active']}>CA</a>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer>
+    <p>GASTRONOMIA MAKKERONI SCP — CALLE MARIA AGUILO 62, 08005 Barcelona</p>
+    <p>
+      <a href="tel:933821436">933821436</a> ·
+      <a href="mailto:hola@makkeroni.com">hola@makkeroni.com</a> ·
+      <a href="https://wa.me/34685031676">WhatsApp</a>
+    </p>
+    <p>
+      <a href="https://facebook.com/makkeroni.gastronomia.italiana.BCN">Facebook</a> ·
+      <a href="https://instagram.com/makkeroni_bcn">Instagram</a>
+    </p>
+    <p style="opacity:0.8; font-size:0.8rem;">
+      © 2026 Gastronomia Makkeroni SCP — Tots els drets reservats
+    </p>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/34685031676" aria-label="WhatsApp" target="_blank">💬</a>
+</body>
+</html>

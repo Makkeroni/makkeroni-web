@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="Contact - Makkeroni" lang="en">
+  <h1>Where Are We? Come Meet Us</h1>
+  <p>Calle Maria Aguilo 62, 08005 Barcelona (Poblenou)</p>
+  <p>Phone: <a href="tel:933821436">933821436</a></p>
+  <p>Email: <a href="mailto:hola@makkeroni.com">hola@makkeroni.com</a></p>
+  <p>WhatsApp: <a href="https://wa.me/34685031676">+34 685 03 16 76</a></p>
+
+  <h2>Opening hours</h2>
+  <p>Monday-Saturday: 10:00–14:00 / 17:00–20:00<br/>Sunday: closed</p>
+
+  <h2>Write to us</h2>
+  <form action="https://formspree.io/f/TU_ID_FORMSPREE" method="POST">
+    <p><label>Name<br/><input type="text" name="name" required style="width:100%;padding:0.5rem;" /></label></p>
+    <p><label>Email<br/><input type="email" name="email" required style="width:100%;padding:0.5rem;" /></label></p>
+    <p><label>Message<br/><textarea name="message" required style="width:100%;padding:0.5rem;" rows="5"></textarea></label></p>
+    <p><label><input type="checkbox" required /> I accept the privacy policy</label></p>
+    <button type="submit" style="background:#1c5c34;color:white;border:none;padding:0.7rem 1.5rem;border-radius:4px;cursor:pointer;">Send</button>
+  </form>
+</Layout>

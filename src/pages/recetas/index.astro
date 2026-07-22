@@ -1,0 +1,15 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const recetas = [
+  { slug: 'carbonara', title: 'Carbonara Receta Clásica' },
+  { slug: 'cacio-e-pepe', title: 'Cacio e Pepe Receta Clásica' },
+  { slug: 'spaghetti-alla-nerano', title: 'Spaghetti alla Nerano Receta Clásica' },
+];
+---
+<Layout title="Recetas - Makkeroni" lang="es">
+  <h1>Recetas</h1>
+  <p>Nuestras recetas clásicas de la cocina italiana, explicadas paso a paso.</p>
+  <ul>
+    {recetas.map(r => <li><a href={`/recetas/${r.slug}`}>{r.title}</a></li>)}
+  </ul>
+</Layout>
